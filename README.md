@@ -22,7 +22,7 @@
 
 ### <p align="center">**_Technologies Used_**<p>
 
-#### Backend: Python, Flask, SQLAlchemy, Postgresql
+#### Backend: Python, Flask, SQLAlchemy(+Alembic), Postgresql
 
 #### Frontend: Javascript, React
 
