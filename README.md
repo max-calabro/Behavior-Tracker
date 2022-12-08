@@ -4,7 +4,7 @@
 
 # <p align="center"> Behavior Tracker <p>
 
-### <p align="center"> Here is a catchy tagline! <p>
+### <p align="center"> Easily keep track of your students and their behavior plans! <p>
 
 #
 
@@ -16,9 +16,15 @@
 
 ### **_Description_**
 
+#### Assign behavior plans to students. Online tool you can show students who may learn better through visuals. Aggregate data about student behaviors and easily find what day/time/period they do well or need assistance in.
+
 ---
 
 ### <p align="center">**_Technologies Used_**<p>
+
+#### Backend: Python, Flask, SQLAlchemy, Postgresql
+
+#### Frontend: Javascript, React
 
 ![Logos](assets/images/BeerBook_Logos_for_README.png)
 
