@@ -43,6 +43,7 @@
 ### **_Future Updates_**
 
 - [ ] Deploy project
+- [ ] Choosing Website colors/styles
 
 ---
 
