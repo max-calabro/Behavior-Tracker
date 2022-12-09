@@ -3,7 +3,7 @@ const middleware = require('../middleware')
 
 const Login = async (req, res) => {
   try {
-    const student = await User.findOne({
+    const student = await Student.findOne({
       where: { email: req.body.email },
       raw: true
     })
@@ -19,7 +19,7 @@ const Login = async (req, res) => {
         email: student.email
       }
       let token = middleware.createToken(payload)
-      return res.send({ user: payload, token })
+      return res.send({ student: payload, token })
     }
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
   } catch (error) {
@@ -31,7 +31,7 @@ const Register = async (req, res) => {
   try {
     const { email, password, name } = req.body
     let passwordDigest = await middleware.hashPassword(password)
-    const student = await User.create({ name, email, passwordDigest })
+    const student = await Student.create({ name, email, passwordDigest })
     res.send(student)
   } catch (error) {
     throw error
@@ -40,7 +40,7 @@ const Register = async (req, res) => {
 
 const UpdatePassword = async (req, res) => {
   try {
-    const student = await User.findOne({
+    const student = await Student.findOne({
       where: { email: req.body.email }
     })
     if (
@@ -52,7 +52,7 @@ const UpdatePassword = async (req, res) => {
     ) {
       let passwordDigest = await middleware.hashPassword(req.body.newPassword)
       await student.update({ passwordDigest })
-      return res.send({ status: 'Sucess', msg: 'Password Updated' })
+      return res.send({ status: 'Success', msg: 'Password Updated' })
     }
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
   } catch (error) {
