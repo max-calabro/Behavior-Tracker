@@ -1,4 +1,4 @@
-const { Counselor } = require('../models')
+const { Counselor, Student, CounselorStudent } = require('../models')
 
 const GetAllCounselor = async (req, res) => {
   try {
@@ -31,6 +31,27 @@ const UpdateCounselor = async (req, res) => {
   }
 }
 
+const AssignStudentToCounselor = async (req, res) => {
+  try {
+    const counselor = await Counselor.findByPk(req.params.counselor_id)
+    await counselor.addCounselors([req.body.studentId])
+    await counselor.save()
+    const response = await Counselor.findByPk(req.params.counselor_id, {
+      include: { model: Student, through: CounselorStudent, as: 'counselors' }
+    })
+    res.send(response)
+  } catch (error) {
+    throw error
+  }
+}
+
+const removeStudentFromCounselor = async (req, res) => {
+  try {
+  } catch (error) {
+    throw error
+  }
+}
+
 const DeleteCounselor = async (req, res) => {
   try {
     await Counselor.destroy({ where: { id: req.params.counselor_id } })
@@ -48,5 +69,6 @@ module.exports = {
   GetAllCounselor,
   GetCounselorById,
   UpdateCounselor,
+  AssignStudentToCounselor,
   DeleteCounselor
 }
