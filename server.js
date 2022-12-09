@@ -4,7 +4,8 @@ const logger = require('morgan')
 
 const StudentRouter = require('./routes/StudentRouter')
 const CounselorRouter = require('./routes/CounselorRouter')
-const AuthRouter = require('./routes/AuthRouter')
+const AuthStudentRouter = require('./routes/AuthStudentRouter')
+const AuthCounselorRouter = require('./routes/AuthCounselorRouter')
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 app.get('/', (req, res) => res.json({ message: 'Server Works!' }))
 app.use('/student', StudentRouter)
 app.use('/counselor', CounselorRouter)
-app.use('/auth', AuthRouter)
+app.use('/auth/student', AuthStudentRouter)
+app.use('/auth/counselor', AuthCounselorRouter)
 
 app.listen(PORT, () => console.log(`Server StartedOn Port: ${PORT}`))
