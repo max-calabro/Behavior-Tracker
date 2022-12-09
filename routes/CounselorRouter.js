@@ -8,6 +8,10 @@ router.put(
   '/assignStudentTo/:counselor_id',
   controller.AssignStudentToCounselor
 )
+router.delete(
+  '/:student_id/:counselor_id',
+  controller.RemoveStudentFromCounselor
+)
 router.delete('/:counselor_id', controller.DeleteCounselor)
 
 module.exports = router

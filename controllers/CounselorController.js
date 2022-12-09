@@ -45,8 +45,17 @@ const AssignStudentToCounselor = async (req, res) => {
   }
 }
 
-const removeStudentFromCounselor = async (req, res) => {
+const RemoveStudentFromCounselor = async (req, res) => {
   try {
+    const counselor_id = req.params.counselor_id
+    const student_id = req.params.student_id
+    await CounselorStudent.destroy({
+      where: { counselorId: counselor_id } && { studentId: student_id }
+    })
+    const respoonse = await Counselor.findByPk(counselor_id, {
+      include: { model: Student, through: CounselorStudent, as: 'counselors' }
+    })
+    res.send(respoonse)
   } catch (error) {
     throw error
   }
@@ -70,5 +79,6 @@ module.exports = {
   GetCounselorById,
   UpdateCounselor,
   AssignStudentToCounselor,
-  DeleteCounselor
+  DeleteCounselor,
+  RemoveStudentFromCounselor
 }
