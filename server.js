@@ -4,6 +4,7 @@ const logger = require('morgan')
 
 const StudentRouter = require('./routes/StudentRouter')
 const CounselorRouter = require('./routes/CounselorRouter')
+const PeriodRouter = require('./routes/PeriodRouter')
 const AuthStudentRouter = require('./routes/AuthStudentRouter')
 const AuthCounselorRouter = require('./routes/AuthCounselorRouter')
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }))
 app.get('/', (req, res) => res.json({ message: 'Server Works!' }))
 app.use('/student', StudentRouter)
 app.use('/counselor', CounselorRouter)
+app.use('/period', PeriodRouter)
 app.use('/auth/student', AuthStudentRouter)
 app.use('/auth/counselor', AuthCounselorRouter)
 
