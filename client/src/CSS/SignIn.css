@@ -1,0 +1,66 @@
+/* Landing Page */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Sign In */
+.title-card {
+  margin-top: 15vh;
+  font-size: larger;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+}
+
+.login-header {
+  margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.email, .password {
+  appearance: none;
+}
+input:-internal-autofill-selected {
+  background-color: white;
+}
+
+.signin-or-register {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 18vh;
+}
+
+.submit {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+  width: 8vh;
+}
+
+.register, .submit {
+  border: 1px solid black;
+  padding: .3vh;
+}
+
+.register:hover, .submit:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.register {
+  width: 8vh;
+  height: 2vh;
+}
