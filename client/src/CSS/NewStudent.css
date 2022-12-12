@@ -1,0 +1,47 @@
+.new-student-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 80vh;
+  width: 100%;
+}
+
+/* All Students Title Bar */
+.flex-row-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 5vh;
+
+  width: 100%;
+}
+
+.component-title{
+  text-align: center;
+  font-size: x-large;
+
+  text-decoration: underline;
+
+  height: 10vh;
+  width: 25%;
+}
+
+.empty-space-left {
+  width: 27.5%;
+  height: 3vh;
+}
+
+.empty-space-right {
+  width: 27.5%;
+  height: 3vh;
+}
+
+.empty-back-button {
+  width: 10%;
+}
+
+.back-button {
+  max-height: 3vh;
+}

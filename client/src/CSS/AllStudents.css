@@ -1,0 +1,101 @@
+.all-students-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 80vh;
+  width: 100%;
+}
+
+/* All Students Title Bar */
+.flex-row-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 5vh;
+
+  width: 100%;
+}
+
+.component-title{
+  text-align: center;
+  font-size: x-large;
+
+  text-decoration: underline;
+
+  height: 10vh;
+  width: 20%;
+}
+
+.empty-space-left {
+  width: 30%;
+  height: 3vh;
+}
+
+.empty-space-right {
+  width: 30%;
+  height: 3vh;
+}
+
+.empty-back-button {
+  width: 10%;
+}
+
+.back-button {
+  max-height: 3vh;
+}
+
+/* Student Table Legend */
+.student-table-legend {
+  display: flex;
+  align-items: flex-end;
+
+  height: 10%;
+}
+
+/* Student Container */
+.all-student-container{
+
+  width: 50%;
+  height: 50vh;
+}
+
+.student-container {
+  display: flex;
+  align-items: flex-end;
+
+  height: 10%;
+}
+
+.legend-name, .legend-homeroom, .legend-schedule {
+  border-bottom: 1px solid black;
+}
+
+.student-name, .legend-name, .legend-homeroom, .student-homeroom, .legend-schedule, .student-schedule {
+  margin-block-start: 0;
+  margin-block-end: 0;
+
+  padding-left: 4%;
+
+  width: 15%;
+}
+
+.legend-homeroom, .student-homeroom {
+  width: 25%;
+}
+
+.legend-schedule, .student-schedule {
+  width: 35%;
+}
+
+.student-schedule:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  color:rgb(255, 79, 255);
+}
+
+.dashed-line {
+  border-left: 1px solid black;
+  height: 2.5vh;
+}

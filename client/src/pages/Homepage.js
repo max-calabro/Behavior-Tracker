@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import AllStudents from '../components/AllStudents'
-import NewStudents from '../components/NewStudent'
+import NewStudent from '../components/NewStudent'
 import Trends from '../components/Trends'
 import HowToUse from '../components/HowToUse'
 
@@ -54,8 +54,8 @@ const Homepage = () => {
               </section>
             ) : componentName === 'all-students' ? (
               <AllStudents setComponentName={setComponentName} />
-            ) : componentName === 'new-students' ? (
-              <NewStudents setComponentName={setComponentName} />
+            ) : componentName === 'new-student' ? (
+              <NewStudent setComponentName={setComponentName} />
             ) : componentName === 'trends' ? (
               <Trends setComponentName={setComponentName} />
             ) : (
