@@ -1,0 +1,59 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.title {
+  margin-top: 15vh;
+  font-size: xx-large;
+  align-self: center;
+}
+
+.register-title {
+  align-self: center;
+}
+
+.register-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 2vh;
+
+  width: 50vh;
+}
+
+.new-user-name {
+  display: flex;
+  justify-content: center;
+
+}
+
+.first-name {
+  margin-right: 2vh;
+}
+
+.last-name {
+  margin-left: 2vh;
+}
+
+.first-name, .last-name {
+  width: 10vh;
+}
+
+.email, .password, .passwordComfirm {
+  align-self: center;
+
+  width: 25vh;
+}
+
+.register-button {
+  align-self: center;
+  width: 15vh;
+}

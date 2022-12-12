@@ -1,0 +1,58 @@
+.navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.website-title, .counselor-name{
+  margin-left: 2vh;
+  margin-right: 2vh;
+}
+
+.homepage-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 80vh;
+  width: 100%;
+}
+
+.flex-div {
+  display: flex;
+  flex-direction: column
+}
+
+.website-functions {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 2vh;
+
+  height: 40vh;
+  width: 40vh;
+}
+
+.all-students, .new-student, .trends, .how-to-use {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: 1px solid black;
+  border-radius: 1vh;
+
+  height: 18vh;
+  width: 18vh;
+}
+
+.function-title {
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.all-students:hover, .new-student:hover, .trends:hover, .how-to-use:hover {
+  box-shadow: 0 0 3px grey;
+}

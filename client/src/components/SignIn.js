@@ -1,8 +1,11 @@
 import '../CSS/SignIn.css'
 import { useState } from 'react'
 import { SignInUser } from '../services/Auth'
+import { useNavigate, Link } from 'react-router-dom'
 
 const SignIn = ({ setUser }) => {
+  const navigate = useNavigate()
+
   const initialState = { email: '', password: '' }
   const [formValues, setFormValues] = useState(initialState)
 
@@ -15,13 +18,13 @@ const SignIn = ({ setUser }) => {
     const payload = await SignInUser(formValues)
     setUser(payload)
     setFormValues(initialState)
-    console.log('here')
+    navigate('/home')
   }
 
   return (
     <>
       <section className="title-card">
-        <h1>Behavior Tracker</h1>
+        <h1 className="website-title">Behavior Tracker</h1>
       </section>
       <section className="login-form">
         <h3 className="login-header">Sign In</h3>
@@ -52,7 +55,9 @@ const SignIn = ({ setUser }) => {
             >
               Sign In
             </button>
-            <div className="register">Register</div>
+            <div className="register">
+              <Link to="/register">Register</Link>
+            </div>
           </div>
         </form>
       </section>
