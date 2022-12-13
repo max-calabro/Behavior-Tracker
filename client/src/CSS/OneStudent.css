@@ -1,0 +1,82 @@
+/* Nav */
+.navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  height: 10vh;
+}
+
+.website-title, .counselor-name{
+  margin-left: 2vh;
+  margin-right: 2vh;
+}
+
+.one-student-main {
+  height: 90vh;
+}
+
+.home-button {
+  justify-self: flex-end;
+  height: 3vh;
+}
+
+/* Student Info */
+.student-general-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2%;
+
+  width: 25%;
+}
+
+.empty-div-left {
+  width: 10%;
+}
+
+/* Daily Schedule */
+.student-daily-schedule {
+  height: 90%;
+  width: 50%;
+}
+
+.student-schedule-top {
+  display: flex;
+
+  width: 99.8%;
+  height: 5%;
+
+  border: 2px solid black;
+  margin-bottom: .5%;
+}
+
+.between-date-and-name{
+  width: 33%;
+}
+
+.student-schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+  border: 1px solid black;
+
+  height: 95%;
+  width: 100%;
+}
+
+.grid-tile {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+}
+
+.behavior-plan-style{
+  display: flex;
+  justify-content: space-around;
+
+  height: 40%;
+  width: 100%;
+}

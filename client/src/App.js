@@ -7,6 +7,7 @@ import { CheckSession } from './services/Auth'
 import Landing from './pages/Landing'
 import Homepage from './pages/Homepage'
 import Register from './components/Register'
+import OneStudent from './components/OneStudent'
 
 function App() {
   const navigate = useNavigate()
@@ -44,6 +45,10 @@ function App() {
               handleLogOut={handleLogOut}
             />
           }
+        />
+        <Route
+          path="/student/:student_id"
+          element={<OneStudent handleLogOut={handleLogOut} />}
         />
       </Routes>
     </>

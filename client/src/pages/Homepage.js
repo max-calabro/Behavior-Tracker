@@ -7,18 +7,29 @@ import NewStudent from '../components/NewStudent'
 import Trends from '../components/Trends'
 import HowToUse from '../components/HowToUse'
 
+import { GetCounselor } from '../services/Queries'
+
 const Homepage = ({ user, setUser, handleLogOut }) => {
   const navigate = useNavigate()
 
   const [componentName, setComponentName] = useState('')
+  const [counselorData, setCounselorData] = useState('')
 
   const renderComponent = (componentName) => {
     setComponentName(componentName)
   }
 
+  const getCounselorData = async () => {
+    if (user) {
+      let id = user.id
+      const response = await GetCounselor(`${id}`)
+      setCounselorData(response.data)
+    }
+  }
+
   useEffect(() => {
     renderComponent('home')
-    console.log(user)
+    getCounselorData()
   }, [])
 
   return user ? (
@@ -26,7 +37,7 @@ const Homepage = ({ user, setUser, handleLogOut }) => {
       <section className="homepage-body">
         <section className="navbar">
           <h1 className="website-title">Behavior Tracker</h1>
-          <h1 className="counselor-name">Welcome Back {user.name}</h1>
+          <h1 className="counselor-name">Welcome Back {counselorData.name}</h1>
           <button onClick={handleLogOut}>Log Out</button>
         </section>
         <main className="homepage-main">

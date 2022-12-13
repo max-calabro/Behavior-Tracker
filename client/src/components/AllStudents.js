@@ -1,8 +1,11 @@
 import '../CSS/AllStudents.css'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { GetCounselorAndStudents } from '../services/Queries'
 
 const AllStudents = ({ setComponentName, user }) => {
+  const navigate = useNavigate()
+
   const [studentList, setStudentList] = useState(null)
 
   const changeStateBack = (home) => {
@@ -12,6 +15,10 @@ const AllStudents = ({ setComponentName, user }) => {
   const getStudentList = async () => {
     const response = await GetCounselorAndStudents(user)
     setStudentList(response.data.students)
+  }
+
+  const navigateToStudentPage = async (student_id) => {
+    navigate(`/student/${student_id}`)
   }
 
   useEffect(() => {
@@ -41,7 +48,7 @@ const AllStudents = ({ setComponentName, user }) => {
             <div className="dashed-line"></div>
             <h3 className="legend-homeroom">Homeroom</h3>
             <div className="dashed-line"></div>
-            <h3 className="legend-schedule">Behavior Tracker</h3>
+            <h3 className="legend-schedule">Behavior Plan</h3>
           </div>
           {studentList
             ? studentList.map((student) =>
@@ -59,7 +66,12 @@ const AllStudents = ({ setComponentName, user }) => {
                     <div className="dashed-line"></div>
                     <h3 className="student-homeroom">{student.homeroom}</h3>
                     <div className="dashed-line"></div>
-                    <h3 className="student-schedule">view</h3>
+                    <h3
+                      className="student-schedule"
+                      onClick={() => navigateToStudentPage(student.id)}
+                    >
+                      view
+                    </h3>
                   </div>
                 )
               )

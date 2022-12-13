@@ -1,5 +1,7 @@
 import '../CSS/NewStudent.css'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import {
   CreateStudent,
   AssignStudentToCounselor,
@@ -7,6 +9,8 @@ import {
 } from '../services/Queries'
 
 const NewStudent = ({ setComponentName, user }) => {
+  const navigate = useNavigate()
+
   const initialState = {
     firstName: '',
     lastName: '',
@@ -48,9 +52,9 @@ const NewStudent = ({ setComponentName, user }) => {
       style: formValues.style
     })
 
-    //  Reset Form
+    //  Reset Form & Navigate
     setFormValues(initialState)
-    // navigate('/')
+    navigate(`/student/${newStudent.data.id}`)
   }
 
   return (

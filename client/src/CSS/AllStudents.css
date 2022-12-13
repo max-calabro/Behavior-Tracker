@@ -115,7 +115,6 @@
 
 .student-schedule:hover {
   cursor: pointer;
-  transform: scale(1.1);
   color:rgb(255, 79, 255);
 }
 
