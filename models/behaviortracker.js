@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       style: DataTypes.STRING,
-      incentive: DataTypes.STRING
+      incentive: DataTypes.STRING,
+      targetedBehavior: DataTypes.STRING
     },
     {
       sequelize,

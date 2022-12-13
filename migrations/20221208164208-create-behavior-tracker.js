@@ -23,6 +23,9 @@ module.exports = {
       incentive: {
         type: Sequelize.STRING
       },
+      targetedBehavior: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
