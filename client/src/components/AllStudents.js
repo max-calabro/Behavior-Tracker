@@ -1,8 +1,8 @@
 import '../CSS/AllStudents.css'
 import { useState, useEffect } from 'react'
-import { getStudents } from '../services/Queries'
+import { GetCounselorAndStudents } from '../services/Queries'
 
-const AllStudents = ({ setComponentName }) => {
+const AllStudents = ({ setComponentName, user }) => {
   const [studentList, setStudentList] = useState(null)
 
   const changeStateBack = (home) => {
@@ -10,8 +10,8 @@ const AllStudents = ({ setComponentName }) => {
   }
 
   const getStudentList = async () => {
-    const students = await getStudents()
-    setStudentList(students)
+    const response = await GetCounselorAndStudents(user)
+    setStudentList(response.data.students)
   }
 
   useEffect(() => {
@@ -44,15 +44,25 @@ const AllStudents = ({ setComponentName }) => {
             <h3 className="legend-schedule">Behavior Tracker</h3>
           </div>
           {studentList
-            ? studentList.data.map((student) => (
-                <div className="student-container" key={student.id}>
-                  <h3 className="student-name">{student.name}</h3>
-                  <div className="dashed-line"></div>
-                  <h3 className="student-homeroom">{student.homeroom}</h3>
-                  <div className="dashed-line"></div>
-                  <h3 className="student-schedule">view</h3>
-                </div>
-              ))
+            ? studentList.map((student) =>
+                student.id % 2 === 0 ? (
+                  <div className="student-container-dark" key={student.id}>
+                    <h3 className="student-name">{student.name}</h3>
+                    <div className="dashed-line"></div>
+                    <h3 className="student-homeroom">{student.homeroom}</h3>
+                    <div className="dashed-line"></div>
+                    <h3 className="student-schedule">view</h3>
+                  </div>
+                ) : (
+                  <div className="student-container-light" key={student.id}>
+                    <h3 className="student-name">{student.name}</h3>
+                    <div className="dashed-line"></div>
+                    <h3 className="student-homeroom">{student.homeroom}</h3>
+                    <div className="dashed-line"></div>
+                    <h3 className="student-schedule">view</h3>
+                  </div>
+                )
+              )
             : null}
         </div>
       </section>

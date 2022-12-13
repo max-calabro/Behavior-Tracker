@@ -9,10 +9,16 @@ const GetAllCounselor = async (req, res) => {
   }
 }
 
-const GetCounselorById = async (req, res) => {
+const GetCounselorAndStudents = async (req, res) => {
   try {
     let id = parseInt(req.params.counselor_id)
-    const counselor = await Counselor.findByPk(id)
+    const counselor = await Counselor.findByPk(id, {
+      include: {
+        model: Student,
+        through: CounselorStudent,
+        as: 'students'
+      }
+    })
     res.send(counselor)
   } catch (error) {
     throw error
@@ -34,10 +40,10 @@ const UpdateCounselor = async (req, res) => {
 const AssignStudentToCounselor = async (req, res) => {
   try {
     const counselor = await Counselor.findByPk(req.params.counselor_id)
-    await counselor.addCounselors([req.body.studentId])
+    await counselor.addStudents([req.body.studentId])
     await counselor.save()
     const response = await Counselor.findByPk(req.params.counselor_id, {
-      include: { model: Student, through: CounselorStudent, as: 'counselors' }
+      include: { model: Student, through: CounselorStudent, as: 'students' }
     })
     res.send(response)
   } catch (error) {
@@ -53,7 +59,7 @@ const RemoveStudentFromCounselor = async (req, res) => {
       where: { counselorId: counselor_id } && { studentId: student_id }
     })
     const respoonse = await Counselor.findByPk(counselor_id, {
-      include: { model: Student, through: CounselorStudent, as: 'counselors' }
+      include: { model: Student, through: CounselorStudent, as: 'students' }
     })
     res.send(respoonse)
   } catch (error) {
@@ -76,7 +82,7 @@ const DeleteCounselor = async (req, res) => {
 
 module.exports = {
   GetAllCounselor,
-  GetCounselorById,
+  GetCounselorAndStudents,
   UpdateCounselor,
   AssignStudentToCounselor,
   DeleteCounselor,

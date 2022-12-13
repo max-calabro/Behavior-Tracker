@@ -56,20 +56,29 @@
 
 /* Student Container */
 .all-student-container{
+  border-top: 2px solid black;
 
   width: 50%;
   height: 50vh;
 }
 
-.student-container {
+.student-table-legend {
+  background-color: rgb(176, 177, 187);
+}
+
+.student-container-light, .student-container-dark {
   display: flex;
   align-items: flex-end;
 
   height: 10%;
 }
 
-.legend-name, .legend-homeroom, .legend-schedule {
-  border-bottom: 1px solid black;
+.student-container-light {
+  background-color: rgb(213, 219, 255);
+}
+
+.student-container-dark {
+  background-color: rgb(174, 185, 246);
 }
 
 .student-name, .legend-name, .legend-homeroom, .student-homeroom, .legend-schedule, .student-schedule {
@@ -81,12 +90,27 @@
   width: 15%;
 }
 
-.legend-homeroom, .student-homeroom {
+.student-name, .legend-name  {
+  text-align: left;
+  
+  border-left: 2px solid black;
+
   width: 25%;
+  height: 100%;
+}
+
+.legend-homeroom, .student-homeroom {
+  text-align: left;
+
+  width: 27%;
+  height: 100%;
 }
 
 .legend-schedule, .student-schedule {
+  border-right: 2px solid black;
+
   width: 35%;
+  height: 100%;
 }
 
 .student-schedule:hover {
@@ -96,6 +120,6 @@
 }
 
 .dashed-line {
-  border-left: 1px solid black;
-  height: 2.5vh;
+  border-left: 2px solid black;
+  height: 100%;
 }

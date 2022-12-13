@@ -8,11 +8,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Student.hasOne(models.BehaviorTracker, { foreignKey: 'studentTrackerId' })
+      Student.hasOne(models.BehaviorTracker, { foreignKey: 'studentId' })
       Student.hasMany(models.DailySchedule, { foreignKey: 'studentId' })
       Student.belongsToMany(models.Counselor, {
         through: 'counselors_students',
-        as: 'students',
+        as: 'counselors',
         foreignKey: 'studentId'
       })
     }

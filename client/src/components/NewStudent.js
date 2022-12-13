@@ -1,8 +1,8 @@
 import '../CSS/NewStudent.css'
 import { useState } from 'react'
-import { CreateStudent } from '../services/Queries'
+import { CreateStudent, AssignStudentToCounselor } from '../services/Queries'
 
-const NewStudent = ({ setComponentName }) => {
+const NewStudent = ({ setComponentName, user }) => {
   const initialState = {
     firstName: '',
     lastName: '',
@@ -21,12 +21,12 @@ const NewStudent = ({ setComponentName }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formValues)
-    // await CreateStudent({
-    //   name: `${formValues.firstName} ${formValues.lastName}`,
-    //   placement: formValues.placement,
-    //   homeroom: formValues.homeroom
-    // })
+    let newStudent = await CreateStudent({
+      name: `${formValues.firstName} ${formValues.lastName}`,
+      placement: formValues.placement,
+      homeroom: formValues.homeroom
+    })
+    await AssignStudentToCounselor(newStudent.data.id, user.id)
     setFormValues(initialState)
     // navigate('/')
   }
@@ -69,11 +69,15 @@ const NewStudent = ({ setComponentName }) => {
               <select
                 onChange={handleChange}
                 className="placement"
-                value={formValues.placement}
+                name="placement"
+                value={formValues.value}
               >
-                <option>504</option>
-                <option>IEP</option>
-                <option>Gen Ed</option>
+                <option selected disabled>
+                  Special Ed Placement
+                </option>
+                <option value="504">504</option>
+                <option value="IEP">IEP</option>
+                <option value="Gen Ed">Gen Ed</option>
               </select>
             </div>
             <div className="new-student-homeroom">

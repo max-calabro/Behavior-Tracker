@@ -3,7 +3,7 @@ const middleware = require('../middleware')
 const controller = (require = require('../controllers/CounselorController'))
 
 router.get('/', controller.GetAllCounselor)
-router.get('/:counselor_id', controller.GetCounselorById)
+router.get('/:counselor_id', controller.GetCounselorAndStudents)
 router.put(
   '/:counselor_id',
   middleware.stripToken,

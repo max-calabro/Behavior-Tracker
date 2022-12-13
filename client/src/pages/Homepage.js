@@ -1,27 +1,33 @@
 import '../CSS/Homepage.css'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import AllStudents from '../components/AllStudents'
 import NewStudent from '../components/NewStudent'
 import Trends from '../components/Trends'
 import HowToUse from '../components/HowToUse'
 
-const Homepage = () => {
+const Homepage = ({ user, setUser, handleLogOut }) => {
   const navigate = useNavigate()
 
-  const [componentName, setComponentName] = useState('home')
+  const [componentName, setComponentName] = useState('')
 
   const renderComponent = (componentName) => {
     setComponentName(componentName)
   }
 
-  return (
+  useEffect(() => {
+    renderComponent('home')
+    console.log(user)
+  }, [])
+
+  return user ? (
     <>
       <section className="homepage-body">
         <section className="navbar">
           <h1 className="website-title">Behavior Tracker</h1>
-          <h1 className="counselor-name">Welcome Back *Counselor Name*</h1>
+          <h1 className="counselor-name">Welcome Back {user.name}</h1>
+          <button onClick={handleLogOut}>Log Out</button>
         </section>
         <main className="homepage-main">
           <div className="flex-div">
@@ -53,9 +59,9 @@ const Homepage = () => {
                 </div>
               </section>
             ) : componentName === 'all-students' ? (
-              <AllStudents setComponentName={setComponentName} />
+              <AllStudents setComponentName={setComponentName} user={user} />
             ) : componentName === 'new-student' ? (
-              <NewStudent setComponentName={setComponentName} />
+              <NewStudent setComponentName={setComponentName} user={user} />
             ) : componentName === 'trends' ? (
               <Trends setComponentName={setComponentName} />
             ) : (
@@ -65,6 +71,13 @@ const Homepage = () => {
         </main>
       </section>
     </>
+  ) : (
+    <div className="protected">
+      <h3>Oops! You must be signed in to do that!</h3>
+      <button onClick={() => navigate('/')} className="protected-button">
+        Sign In
+      </button>
+    </div>
   )
 }
 
