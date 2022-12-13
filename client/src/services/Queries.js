@@ -29,3 +29,12 @@ export const AssignStudentToCounselor = async (data, counselorID) => {
     throw error
   }
 }
+
+export const CreateTracker = async (data) => {
+  try {
+    const response = await Client.post('/behaviorTracker', data)
+    return response
+  } catch (error) {
+    throw error
+  }
+}

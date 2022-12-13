@@ -1,13 +1,21 @@
 import '../CSS/NewStudent.css'
 import { useState } from 'react'
-import { CreateStudent, AssignStudentToCounselor } from '../services/Queries'
+import {
+  CreateStudent,
+  AssignStudentToCounselor,
+  CreateTracker
+} from '../services/Queries'
 
 const NewStudent = ({ setComponentName, user }) => {
   const initialState = {
     firstName: '',
     lastName: '',
     placement: '',
-    homeroom: ''
+    homeroom: '',
+
+    targetedBehavior: '',
+    incentive: '',
+    style: ''
   }
   const [formValues, setFormValues] = useState(initialState)
 
@@ -21,12 +29,26 @@ const NewStudent = ({ setComponentName, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    //  Create Student
     let newStudent = await CreateStudent({
       name: `${formValues.firstName} ${formValues.lastName}`,
       placement: formValues.placement,
       homeroom: formValues.homeroom
     })
+
+    //  Associate To Counselor
     await AssignStudentToCounselor(newStudent.data.id, user.id)
+
+    //  Create Behavior Plan
+    await CreateTracker({
+      studentId: newStudent.data.id,
+      targetedBehavior: formValues.targetedBehavior,
+      incentive: formValues.incentive,
+      style: formValues.style
+    })
+
+    //  Reset Form
     setFormValues(initialState)
     // navigate('/')
   }
@@ -43,68 +65,117 @@ const NewStudent = ({ setComponentName, user }) => {
             <button onClick={() => changeStateBack('home')}>Back</button>
           </div>
         </div>
-        <section className="new-student-form">
-          <form className="form-body" onSubmit={handleSubmit}>
-            <div className="new-student-name">
-              <input
-                onChange={handleChange}
-                className="first-name"
-                name="firstName"
-                type="text"
-                placeholder="First"
-                value={formValues.firstName}
-                required
-              />
-              <input
-                onChange={handleChange}
-                className="last-name"
-                name="lastName"
-                type="text"
-                placeholder="Last"
-                value={formValues.lastName}
-                required
-              />
+        <div className="form-body">
+          <form onSubmit={handleSubmit}>
+            <section className="new-student-form-left">
+              <div className="new-student-name">
+                <div className="name">
+                  <input
+                    onChange={handleChange}
+                    className="new-first-name"
+                    name="firstName"
+                    type="text"
+                    placeholder="First Name"
+                    value={formValues.firstName}
+                    required
+                  />
+                  <div className="gap"></div>
+                  <input
+                    onChange={handleChange}
+                    className="new-last-name"
+                    name="lastName"
+                    type="text"
+                    placeholder="Last Name"
+                    value={formValues.lastName}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="new-student-homeroom">
+                <input
+                  onChange={handleChange}
+                  className="homeroom"
+                  name="homeroom"
+                  type="text"
+                  placeholder="Homeroom"
+                  value={formValues.homeroom}
+                  required
+                />
+              </div>
+              <div className="new-student-placement">
+                <select
+                  onChange={handleChange}
+                  className="placement"
+                  name="placement"
+                  value={formValues.value}
+                >
+                  <option selected disabled>
+                    Special Ed Placement
+                  </option>
+                  <option value="504">504</option>
+                  <option value="IEP">IEP</option>
+                  <option value="Gen Ed">Gen Ed</option>
+                </select>
+              </div>
+            </section>
+            <div className="middle">
+              <div className="middle-left"></div>
+              <div className="middle-right"></div>
             </div>
-            <div className="new-student-placement">
+            <section className="new-student-form-right">
+              <div className="behavior-container">
+                <label>Behavior Being Targeted</label>
+                <textarea
+                  onChange={handleChange}
+                  name="targetedBehavior"
+                  type="text"
+                  value={formValues.targetedBehavior}
+                  required
+                ></textarea>
+              </div>
+              <div className="incentive-container">
+                <label>Incentive</label>
+                <textarea
+                  onChange={handleChange}
+                  name="incentive"
+                  type="text"
+                  value={formValues.incentive}
+                  required
+                ></textarea>
+              </div>
               <select
                 onChange={handleChange}
-                className="placement"
-                name="placement"
+                className="style"
+                name="style"
                 value={formValues.value}
               >
                 <option selected disabled>
-                  Special Ed Placement
+                  Style
                 </option>
-                <option value="504">504</option>
-                <option value="IEP">IEP</option>
-                <option value="Gen Ed">Gen Ed</option>
+                <option value="Red/Green Moments">Red/Green Moments</option>
+                <option value="Happy/Sad Faces">Happy/Sad Faces</option>
+                <option value="Thumbs Up/Down">Thumbs Up/Down</option>
               </select>
+            </section>
+            <div className="button-div">
+              <button
+                disabled={
+                  !formValues.firstName ||
+                  !formValues.lastName ||
+                  !formValues.placement ||
+                  !formValues.homeroom ||
+                  !formValues.targetedBehavior ||
+                  !formValues.incentive ||
+                  !formValues.style
+                }
+                className="add-student-button"
+                type="submit"
+              >
+                Add Student
+              </button>
             </div>
-            <div className="new-student-homeroom">
-              <input
-                onChange={handleChange}
-                className="homeroom"
-                name="homeroom"
-                type="text"
-                placeholder="Homeroom"
-                value={formValues.homeroom}
-                required
-              />
-            </div>
-            <button
-              disabled={
-                !formValues.firstName ||
-                !formValues.lastName ||
-                !formValues.placement ||
-                !formValues.homeroom
-              }
-              className="register-button"
-              type="submit"
-            >
-              Add Student
-            </button>
           </form>
-        </section>
+        </div>
       </section>
     </>
   )

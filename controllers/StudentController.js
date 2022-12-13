@@ -1,8 +1,15 @@
-const { Student, Counselor, CounselorStudent } = require('../models')
+const {
+  Student,
+  Counselor,
+  CounselorStudent,
+  BehaviorTracker
+} = require('../models')
 
 const GetAllStudents = async (req, res) => {
   try {
-    const students = await Student.findAll()
+    const students = await Student.findAll({
+      include: { model: BehaviorTracker }
+    })
     res.send(students)
   } catch (error) {
     throw error
@@ -13,7 +20,7 @@ const GetStudentById = async (req, res) => {
   try {
     let id = parseInt(req.params.student_id)
     const student = await Student.findByPk(id, {
-      include: { model: Counselor, through: CounselorStudent, as: 'counselors' }
+      include: { model: BehaviorTracker }
     })
     res.send(student)
   } catch (error) {
