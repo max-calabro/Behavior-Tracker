@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   Period.init(
     {
       name: DataTypes.STRING,
+      notes: DataTypes.STRING,
       behavior: DataTypes.INTEGER //  negative/0/positive
     },
     {

@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING
+      },
       date: {
         type: Sequelize.DATE
       },
@@ -19,6 +22,9 @@ module.exports = {
           model: 'students',
           key: 'id'
         }
+      },
+      notes: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

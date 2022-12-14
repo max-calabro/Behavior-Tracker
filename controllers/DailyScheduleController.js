@@ -1,5 +1,17 @@
 const { DailySchedule, Period, DailyPeriod } = require('../models')
 
+const GetScheduleById = async (req, res) => {
+  try {
+    let id = parseInt(req.params.schedule_id)
+    const schedule = await DailySchedule.findByPk(id, {
+      include: { model: Period, through: DailyPeriod, as: 'periods' }
+    })
+    res.send(schedule)
+  } catch (error) {
+    throw error
+  }
+}
+
 const CreateSchedule = async (req, res) => {
   try {
     const newSchedule = await DailySchedule.create({ ...req.body })
@@ -12,6 +24,8 @@ const CreateSchedule = async (req, res) => {
 const AddAPeriodToSchedule = async (req, res) => {
   try {
     const schedule = await DailySchedule.findByPk(req.params.schedule_id)
+    console.log('\n')
+    console.log([req.body.periodId])
     await schedule.addPeriods([req.body.periodId])
     await schedule.save()
     const response = await DailySchedule.findByPk(req.params.schedule_id, {
@@ -49,6 +63,7 @@ const DeleteSchedule = async (req, res) => {
 }
 
 module.exports = {
+  GetScheduleById,
   CreateSchedule,
   AddAPeriodToSchedule,
   UpdateSchedule,

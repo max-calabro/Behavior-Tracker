@@ -35,6 +35,25 @@
   width: 10%;
 }
 
+/* Create Form */
+.flex-form{
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.date {
+  width: 40%;
+}
+
+.sumbit-form-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Daily Schedule */
 .student-daily-schedule {
   height: 90%;

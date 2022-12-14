@@ -111,7 +111,7 @@ const NewStudent = ({ setComponentName, user }) => {
                   onChange={handleChange}
                   className="placement"
                   name="placement"
-                  value={formValues.value}
+                  value={formValues.placement}
                 >
                   <option selected disabled>
                     Special Ed Placement

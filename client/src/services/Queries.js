@@ -48,9 +48,39 @@ export const CreateTracker = async (data) => {
   }
 }
 
+export const CreateNewSchedule = async (nameAndDate) => {
+  try {
+    const freshSchedule = await Client.post('/schedule', nameAndDate)
+    return freshSchedule
+  } catch (error) {
+    throw error
+  }
+}
+
+export const AddPeriodsToSchedule = async (period, id) => {
+  try {
+    let completedSchedule = await Client.put(
+      `/schedule/add-period-to/${id}`,
+      period
+    )
+    return completedSchedule
+  } catch (error) {
+    throw error
+  }
+}
+
 export const GetCounselor = async (id) => {
   try {
     const response = await Client.get(`/counselor/${id}`)
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
+export const GetAllPeriods = async () => {
+  try {
+    const response = await Client.get(`/period`)
     return response
   } catch (error) {
     throw error

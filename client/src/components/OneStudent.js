@@ -3,13 +3,20 @@ import '../CSS/OneStudent.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-import { GetStudentById } from '../services/Queries'
+import { GetStudentById, GetAllPeriods } from '../services/Queries'
+
+import Schedule from './Schedule'
+import EditSchedule from './EditSchedule'
+import CreateSchedule from './CreateSchedule'
 
 const OneStudent = ({ handleLogOut }) => {
   const navigate = useNavigate()
   const params = useParams()
 
+  const [periodList, setPeriodList] = useState(null)
+
   const [studentInfo, setStundetInfo] = useState('')
+  const [schedule, setSchedule] = useState('')
 
   const navigateBack = () => {
     navigate(-1)
@@ -17,12 +24,22 @@ const OneStudent = ({ handleLogOut }) => {
 
   const getStudentInfo = async () => {
     let response = await GetStudentById(params.student_id)
-    console.log(response.data)
     setStundetInfo(response.data)
+  }
+
+  const changeSchedule = (toThis) => {
+    setSchedule(toThis)
+  }
+
+  const getPeriods = async () => {
+    let response = await GetAllPeriods()
+    console.log(response.data)
+    setPeriodList(response.data)
   }
 
   useEffect(() => {
     getStudentInfo()
+    getPeriods()
   }, [])
 
   return (
@@ -39,42 +56,52 @@ const OneStudent = ({ handleLogOut }) => {
           <div className="student-general-info">
             <div>Name: {studentInfo.name}</div>
             <div>Homeroom: {studentInfo.homeroom}</div>
-            <div>
+            {/* <div>
               Targeted Behavior: {studentInfo.BehaviorTracker.targetedBehavior}
             </div>
-            <div>Incentive: {studentInfo.BehaviorTracker.incentive}</div>
+            <div>Incentive: {studentInfo.BehaviorTracker.incentive}</div> */}
             <div>Other Days</div>
+            <div className="button-grouping">
+              <button
+                className="make-schedule-button"
+                onClick={() => changeSchedule('create')}
+              >
+                Make A New Schedule
+              </button>
+              <button
+                className="edit-schedule-button"
+                onClick={() => changeSchedule('edit')}
+              >
+                Edit Current Schedule
+              </button>
+            </div>
           </div>
           <div className="empty-div-left">left</div>
           <div className="student-daily-schedule">
-            <div className="student-schedule-top">
-              <div>Date</div>
-              <div className="between-date-and-name"></div>
-              <div>{studentInfo.name}</div>
-            </div>
-            <div className="student-schedule-grid">
-              <div className="grid-tile">
-                <div className="period-name">Period Name</div>
-                <div className="behavior-plan-style">
-                  <div className="box-1">1</div>
-                  <div className="box-2">2</div>
-                </div>
-              </div>
-              <div className="grid-tile">2</div>
-              <div className="grid-tile">3</div>
-              <div className="grid-tile">4</div>
-              <div className="grid-tile">5</div>
-              <div className="grid-tile">6</div>
-              <div className="grid-tile">7</div>
-              <div className="grid-tile">8</div>
-              <div className="grid-tile">9</div>
-              <div className="grid-tile">10</div>
-              <div className="grid-tile">11</div>
-              <div className="grid-tile">12</div>
-              <div className="grid-tile">13</div>
-              <div className="grid-tile">14</div>
-              <div className="grid-tile">15</div>
-            </div>
+            {schedule === 'selected' ? (
+              <Schedule
+                studentInfo={studentInfo}
+                schedule={schedule}
+                setSchedule={setSchedule}
+              />
+            ) : schedule === 'create' ? (
+              <CreateSchedule
+                studentInfo={studentInfo}
+                schedule={schedule}
+                setSchedule={setSchedule}
+                periodList={periodList}
+              />
+            ) : schedule === 'edit' ? (
+              <EditSchedule
+                studentInfo={studentInfo}
+                schedule={schedule}
+                setSchedule={setSchedule}
+              />
+            ) : (
+              <button onClick={() => changeSchedule('selected')}>
+                Select a schedule
+              </button>
+            )}
           </div>
           <div className="empty-div-right">right</div>
         </main>

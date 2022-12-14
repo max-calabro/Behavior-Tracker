@@ -13,6 +13,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      notes: {
+        type: Sequelize.STRING
+      },
       behavior: {
         type: Sequelize.INTEGER
       },

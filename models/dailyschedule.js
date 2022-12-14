@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   DailySchedule.init(
     {
+      name: DataTypes.STRING,
       date: DataTypes.DATE,
       studentId: {
         type: DataTypes.INTEGER,
@@ -29,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
           model: 'students',
           key: 'id'
         }
-      }
+      },
+      notes: DataTypes.STRING
     },
     {
       sequelize,
