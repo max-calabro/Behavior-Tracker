@@ -1,6 +1,10 @@
 import { useState } from 'react'
 
-import { CreateNewSchedule, AddPeriodsToSchedule } from '../services/Queries'
+import {
+  CreateNewSchedule,
+  AddPeriodsToSchedule,
+  AssignScheduleToStudent
+} from '../services/Queries'
 
 const CreateSchedule = ({ studentInfo, schedule, setSchedule, periodList }) => {
   const initialState = {
@@ -29,19 +33,29 @@ const CreateSchedule = ({ studentInfo, schedule, setSchedule, periodList }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formValues)
+
+    //  Create Schedule
     let newSchedule = await CreateNewSchedule({
       name: formValues.name,
       date: formValues.date
     })
+
+    //  Add Periods To Schedule
     let newArr = Object.values(formValues)
+    let testing = null
     for (let i = 14; i > 0; i--) {
       let completedSchedule = await AddPeriodsToSchedule(
         { periodId: parseInt(newArr[i + 1]) },
         newSchedule.data.id
       )
-      console.log(completedSchedule.data)
+      testing = completedSchedule
     }
+
+    //  Assign Schedule To Student
+    let studentWithSchedule = await AssignScheduleToStudent(studentInfo.id, {
+      scheduleId: newSchedule.data.id
+    })
+    console.log(studentWithSchedule)
   }
 
   return (

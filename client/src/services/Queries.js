@@ -69,6 +69,18 @@ export const AddPeriodsToSchedule = async (period, id) => {
   }
 }
 
+export const AssignScheduleToStudent = async (studentId, scheduleId) => {
+  try {
+    const student = await Client.put(
+      `/student/assignScheduleTo/${studentId}`,
+      scheduleId
+    )
+    return student
+  } catch (error) {
+    throw error
+  }
+}
+
 export const GetCounselor = async (id) => {
   try {
     const response = await Client.get(`/counselor/${id}`)
