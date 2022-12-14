@@ -151,7 +151,7 @@ const OneStudent = ({ handleLogOut }) => {
               />
             ) : (
               <button onClick={() => changeSchedule('selected')}>
-                Select a schedule
+                Display Most Recent Schedule
               </button>
             )}
           </div>

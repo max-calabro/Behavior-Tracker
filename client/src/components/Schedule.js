@@ -40,6 +40,20 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
     console.log(toLog.data[1][0])
   }
 
+  const initializeColor = (behavior, box1, box2) => {
+    if (behavior === 1) {
+      let green = document.querySelector(box1)
+      green.style.backgroundColor = 'rgb(8, 208, 8)'
+    } else if (behavior === -1) {
+      let red = document.querySelector(box2)
+      red.style.backgroundColor = 'red'
+    }
+  }
+
+  const pause = (behavior, box1, box2) => {
+    setTimeout(initializeColor, 500, behavior, box1, box2)
+  }
+
   useEffect(() => {
     getTheCurrentSchedule()
   }, [])
@@ -70,40 +84,56 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
             </div>
           </div>
         </div> */}
-        {currentSchedule.periods.map((period, index) => (
-          <div className="grid-tile" key={period.id}>
-            <div className="period-name">{period.name}</div>
-            <div className="between-name-and-style"></div>
-            <div className="behavior-plan-style">
-              <div
-                className={'box-1-' + index}
-                onClick={() =>
-                  changeColor(
-                    `.box-1-${index}`,
-                    `.box-2-${index}`,
-                    1,
-                    period.id
-                  )
-                }
-              >
-                1
+        {currentSchedule.periods.map(
+          (period, index) => (
+            // setTimeout(
+            //   initializeColor,
+            //   1000,
+            //   period.behavior,
+            //   `.box-1-${index}`,
+            //   `.box-2-${index}`
+            // ),
+            pause(period.behavior, `.box-1-${index}`, `.box-2-${index}`),
+            (
+              <div className="grid-tile" key={period.id}>
+                <div className="period-name">{period.name}</div>
+                <div className="between-name-and-style"></div>
+                <div className="behavior-plan-style">
+                  <div
+                    className={'box-1-' + index}
+                    onClick={() =>
+                      changeColor(
+                        `.box-1-${index}`,
+                        `.box-2-${index}`,
+                        1,
+                        period.id
+                      )
+                    }
+                  >
+                    1
+                  </div>
+                  <div
+                    className={'box-2-' + index}
+                    onClick={() =>
+                      changeColor(
+                        `.box-2-${index}`,
+                        `.box-1-${index}`,
+                        -1,
+                        period.id
+                      )
+                    }
+                  >
+                    2
+                  </div>
+                </div>
               </div>
-              <div
-                className={'box-2-' + index}
-                onClick={() =>
-                  changeColor(
-                    `.box-2-${index}`,
-                    `.box-1-${index}`,
-                    -1,
-                    period.id
-                  )
-                }
-              >
-                2
-              </div>
-            </div>
-          </div>
-        ))}
+            )
+            // pause(period.behavior, `.box-1-${index}`, `.box-2-${index}`)
+          )
+        )}
+        {/* {currentSchedule.periods.map((period, index) =>
+          initializeColor(period.behavior, `.box-1-${index}`, `.box-2-${index}`)
+        )} */}
         {/* <div className="grid-tile">
           <div className="period-name">{currentSchedule.periods[1].name}</div>
           <div className="between-name-and-style"></div>

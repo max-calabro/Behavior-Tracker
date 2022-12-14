@@ -3,8 +3,7 @@ const { Student, DailySchedule, BehaviorTracker } = require('../models')
 const GetAllStudents = async (req, res) => {
   try {
     const students = await Student.findAll({
-      include: { model: BehaviorTracker },
-      include: { model: DailySchedule }
+      include: { model: BehaviorTracker } && { model: DailySchedule }
     })
     res.send(students)
   } catch (error) {
@@ -17,6 +16,7 @@ const GetStudentById = async (req, res) => {
     let id = parseInt(req.params.student_id)
     const student = await Student.findByPk(id, {
       include: { model: BehaviorTracker },
+      // Only includes the last model. Additional includes replace current
       include: { model: DailySchedule }
     })
     res.send(student)
