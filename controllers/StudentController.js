@@ -1,14 +1,10 @@
-const {
-  Student,
-  Counselor,
-  CounselorStudent,
-  BehaviorTracker
-} = require('../models')
+const { Student, DailySchedule, BehaviorTracker } = require('../models')
 
 const GetAllStudents = async (req, res) => {
   try {
     const students = await Student.findAll({
-      include: { model: BehaviorTracker }
+      include: { model: BehaviorTracker },
+      include: { model: DailySchedule }
     })
     res.send(students)
   } catch (error) {
@@ -32,6 +28,20 @@ const CreateStudent = async (req, res) => {
   try {
     const NewStudent = await Student.create({ ...req.body })
     res.send(NewStudent)
+  } catch (error) {
+    throw error
+  }
+}
+
+const AssignScheduleToStudent = async (req, res) => {
+  try {
+    const student = await Student.findByPk(req.params.student_id)
+    await student.addDailySchedules([req.body.scheduleId])
+    await student.save()
+    const response = await Student.findByPk(req.params.student_id, {
+      include: { model: DailySchedule }
+    })
+    res.send(response)
   } catch (error) {
     throw error
   }
@@ -66,6 +76,7 @@ module.exports = {
   GetAllStudents,
   GetStudentById,
   CreateStudent,
+  AssignScheduleToStudent,
   UpdateStudent,
   DeleteStudent
 }

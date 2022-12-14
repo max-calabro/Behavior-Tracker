@@ -12,7 +12,7 @@ module.exports = {
       date: {
         type: Sequelize.DATE
       },
-      studentScheduleId: {
+      studentId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {

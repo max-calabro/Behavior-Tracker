@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       DailySchedule.belongsTo(models.Student, {
         as: 'studentSchedules',
-        foreignKey: 'studentScheduleId'
+        foreignKey: 'studentId'
       })
       DailySchedule.belongsToMany(models.Period, {
         through: 'daily_periods',
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   DailySchedule.init(
     {
       date: DataTypes.DATE,
-      studentScheduleId: {
+      studentId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {

@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Period.belongsToMany(models.DailySchedule, {
         through: 'daily_periods',
-        as: 'dailys',
+        as: 'schedules',
         foreignKey: 'periodId'
       })
     }
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   Period.init(
     {
       name: DataTypes.STRING,
-      behavior: DataTypes.INTEGER
+      behavior: DataTypes.INTEGER //  negative/0/positive
     },
     {
       sequelize,
