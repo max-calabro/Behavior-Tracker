@@ -18,19 +18,23 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
     setCurrentSchedule(newS.data)
   }
 
-  const changeColor = (ofThis, color) => {
+  const changeColor = (ofThis, andThis, color) => {
     let toBeChanged = document.querySelector(ofThis)
+    let alsoChange = document.querySelector(andThis)
     if (color === 'green') {
       toBeChanged.style.backgroundColor = 'rgb(8, 208, 8)'
+      alsoChange.style.backgroundColor = 'rgb(233, 223, 223)'
       //  Axios call to change behavior to positive
     } else {
       toBeChanged.style.backgroundColor = 'red'
+      alsoChange.style.backgroundColor = ''
       //  Axios call to change behavior to negative
     }
   }
 
   useEffect(() => {
     getTheCurrentSchedule()
+    console.log('hi')
   }, [])
 
   return currentSchedule ? (
@@ -41,7 +45,7 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
         <div>{currentSchedule.name}</div>
       </div>
       <div className="student-schedule-grid">
-        <div className="grid-tile">
+        {/* <div className="grid-tile">
           <div className="period-name">{currentSchedule.periods[0].name}</div>
           <div className="between-name-and-style"></div>
           <div className="behavior-plan-style">
@@ -58,7 +62,7 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
               2
             </div>
           </div>
-        </div>
+        </div> */}
         {currentSchedule.periods.map((period, index) => (
           <div className="grid-tile" key={period.id}>
             <div className="period-name">{period.name}</div>
@@ -66,13 +70,17 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
             <div className="behavior-plan-style">
               <div
                 className={'box-1-' + index}
-                onClick={() => changeColor(`.box-1-${index}`, 'green')}
+                onClick={() =>
+                  changeColor(`.box-1-${index}`, `.box-2-${index}`, 'green')
+                }
               >
                 1
               </div>
               <div
                 className={'box-2-' + index}
-                onClick={() => changeColor(`.box-2-${index}`, 'red')}
+                onClick={() =>
+                  changeColor(`.box-2-${index}`, `.box-1-${index}`, 'red')
+                }
               >
                 2
               </div>
