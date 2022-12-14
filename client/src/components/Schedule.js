@@ -3,7 +3,11 @@ import '../CSS/OneStudent.css'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { GetStudentById, GetScheduleById } from '../services/Queries'
+import {
+  GetStudentById,
+  GetScheduleById,
+  UpdatePeriod
+} from '../services/Queries'
 
 const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
   const params = useParams()
@@ -18,10 +22,12 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
     setCurrentSchedule(newS.data)
   }
 
-  const changeColor = (ofThis, andThis, color) => {
+  const changeColor = async (ofThis, andThis, color, periodId) => {
     let toBeChanged = document.querySelector(ofThis)
     let alsoChange = document.querySelector(andThis)
-    if (color === 'green') {
+
+    //  color explanation: 1 = positive behavior aka green, red = negative behavior aka red
+    if (color === 1) {
       toBeChanged.style.backgroundColor = 'rgb(8, 208, 8)'
       alsoChange.style.backgroundColor = 'rgb(233, 223, 223)'
       //  Axios call to change behavior to positive
@@ -30,11 +36,12 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
       alsoChange.style.backgroundColor = ''
       //  Axios call to change behavior to negative
     }
+    let toLog = await UpdatePeriod(periodId, { behavior: color })
+    console.log(toLog.data[1][0])
   }
 
   useEffect(() => {
     getTheCurrentSchedule()
-    console.log('hi')
   }, [])
 
   return currentSchedule ? (
@@ -71,7 +78,12 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
               <div
                 className={'box-1-' + index}
                 onClick={() =>
-                  changeColor(`.box-1-${index}`, `.box-2-${index}`, 'green')
+                  changeColor(
+                    `.box-1-${index}`,
+                    `.box-2-${index}`,
+                    1,
+                    period.id
+                  )
                 }
               >
                 1
@@ -79,7 +91,12 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
               <div
                 className={'box-2-' + index}
                 onClick={() =>
-                  changeColor(`.box-2-${index}`, `.box-1-${index}`, 'red')
+                  changeColor(
+                    `.box-2-${index}`,
+                    `.box-1-${index}`,
+                    -1,
+                    period.id
+                  )
                 }
               >
                 2

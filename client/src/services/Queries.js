@@ -99,6 +99,15 @@ export const GetAllPeriods = async () => {
   }
 }
 
+export const UpdatePeriod = async (id, data) => {
+  try {
+    const response = await Client.put(`/period/${id}`, data)
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
 export const GetScheduleById = async (id) => {
   try {
     const response = await Client.get(`/schedule/${id}`)
