@@ -1,10 +1,30 @@
 import '../CSS/OneStudent.css'
 
-const Schedule = ({ studentInfo, schedule, setSchedule }) => {
-  return (
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+
+import { GetStudentById, GetScheduleById } from '../services/Queries'
+
+const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
+  const params = useParams()
+
+  const [currentSchedule, setCurrentSchedule] = useState(null)
+
+  const getTheCurrentSchedule = async () => {
+    let response = await GetStudentById(params.student_id)
+    console.log(response.data.DailySchedules[0].id)
+    let newS = await GetScheduleById(response.data.DailySchedules[0].id)
+    console.log(newS.data)
+    setCurrentSchedule(newS.data)
+  }
+
+  useEffect(() => {
+    getTheCurrentSchedule()
+  }, [])
+  return currentSchedule ? (
     <>
       <div className="student-schedule-top">
-        <div>Date</div>
+        <div>{currentSchedule.date}</div>
         <div className="between-date-and-name"></div>
         <div>{studentInfo.name}</div>
       </div>
@@ -32,6 +52,8 @@ const Schedule = ({ studentInfo, schedule, setSchedule }) => {
         <div className="grid-tile">15</div>
       </div>
     </>
+  ) : (
+    <div></div>
   )
 }
 

@@ -1,12 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-import {
-  CreateNewSchedule,
-  AddPeriodsToSchedule,
-  AssignScheduleToStudent
-} from '../services/Queries'
+// import {
+//   CreateNewSchedule,
+//   AddPeriodsToSchedule,
+//   AssignScheduleToStudent
+// } from '../services/Queries'
 
-const CreateSchedule = ({ studentInfo, schedule, setSchedule, periodList }) => {
+const CreateSchedule = ({
+  studentInfo,
+  schedule,
+  setSchedule,
+  periodList,
+  setSelectedSchedule,
+  setTrigger,
+  scheduleCreation,
+  addInPeriods,
+  assignNewScheduleToStudent
+}) => {
   const initialState = {
     name: '',
     date: '',
@@ -35,27 +45,16 @@ const CreateSchedule = ({ studentInfo, schedule, setSchedule, periodList }) => {
     e.preventDefault()
 
     //  Create Schedule
-    let newSchedule = await CreateNewSchedule({
-      name: formValues.name,
-      date: formValues.date
-    })
+    let newSchedule = await scheduleCreation(formValues.name, formValues.date)
 
     //  Add Periods To Schedule
-    let newArr = Object.values(formValues)
-    let testing = null
-    for (let i = 14; i > 0; i--) {
-      let completedSchedule = await AddPeriodsToSchedule(
-        { periodId: parseInt(newArr[i + 1]) },
-        newSchedule.data.id
-      )
-      testing = completedSchedule
-    }
+    await addInPeriods(formValues, newSchedule)
 
     //  Assign Schedule To Student
-    let studentWithSchedule = await AssignScheduleToStudent(studentInfo.id, {
-      scheduleId: newSchedule.data.id
-    })
-    console.log(studentWithSchedule)
+    await assignNewScheduleToStudent(newSchedule)
+
+    setSchedule('selected')
+    // setTrigger(true)
   }
 
   return (

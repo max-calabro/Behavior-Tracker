@@ -16,7 +16,8 @@ const GetStudentById = async (req, res) => {
   try {
     let id = parseInt(req.params.student_id)
     const student = await Student.findByPk(id, {
-      include: { model: BehaviorTracker }
+      include: { model: BehaviorTracker },
+      include: { model: DailySchedule }
     })
     res.send(student)
   } catch (error) {

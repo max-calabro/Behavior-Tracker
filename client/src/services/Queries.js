@@ -98,3 +98,12 @@ export const GetAllPeriods = async () => {
     throw error
   }
 }
+
+export const GetScheduleById = async (id) => {
+  try {
+    const response = await Client.get(`/schedule/${id}`)
+    return response
+  } catch (error) {
+    throw error
+  }
+}
