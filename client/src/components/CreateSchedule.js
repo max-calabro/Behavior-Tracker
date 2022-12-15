@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react'
 
-// import {
-//   CreateNewSchedule,
-//   AddPeriodsToSchedule,
-//   AssignScheduleToStudent
-// } from '../services/Queries'
-
 const CreateSchedule = ({
   studentInfo,
   schedule,
@@ -54,7 +48,6 @@ const CreateSchedule = ({
     await assignNewScheduleToStudent(newSchedule)
 
     setSchedule('selected')
-    // setTrigger(true)
   }
 
   return (

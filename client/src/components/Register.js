@@ -11,7 +11,6 @@ const Register = () => {
     lastName: '',
     email: '',
     password: ''
-    //passwordCheck: ''
   }
   const [formValues, setFormValues] = useState(initialState)
 
