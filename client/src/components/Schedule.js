@@ -16,9 +16,7 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
 
   const getTheCurrentSchedule = async () => {
     let response = await GetStudentById(params.student_id)
-    console.log(response.data.DailySchedules[0].id)
     let newS = await GetScheduleById(response.data.DailySchedules[0].id)
-    console.log(newS.data)
     setCurrentSchedule(newS.data)
   }
 
@@ -37,7 +35,6 @@ const Schedule = ({ studentInfo, schedule, setSchedule, selectedSchedule }) => {
       //  Axios call to change behavior to negative
     }
     let toLog = await UpdatePeriod(periodId, { behavior: color })
-    console.log(toLog.data[1][0])
   }
 
   const initializeColor = (behavior, box1, box2) => {

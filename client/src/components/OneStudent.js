@@ -65,7 +65,6 @@ const OneStudent = ({ handleLogOut }) => {
       )
       completedSchedule = looping
     }
-    console.log(completedSchedule.data)
     setSelectedSchedule(completedSchedule)
     return completedSchedule
   }

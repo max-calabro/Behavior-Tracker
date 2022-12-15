@@ -14,7 +14,6 @@ const AllStudents = ({ setComponentName, user }) => {
 
   const getStudentList = async () => {
     const response = await GetCounselorAndStudents(user)
-    console.log(response.data)
     setStudentList(response.data.students)
   }
 

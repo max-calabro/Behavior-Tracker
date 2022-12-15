@@ -24,8 +24,6 @@ const CreateSchedule = async (req, res) => {
 const AddAPeriodToSchedule = async (req, res) => {
   try {
     const schedule = await DailySchedule.findByPk(req.params.schedule_id)
-    console.log('\n')
-    console.log([req.body.periodId])
     await schedule.addPeriods([req.body.periodId])
     await schedule.save()
     const response = await DailySchedule.findByPk(req.params.schedule_id, {
