@@ -1,3 +1,10 @@
+:root {
+  --offWhite: rgb(251, 241, 234);
+  --paleGreen: rgb(142, 165, 114);
+  --embarrassedPeach: rgb(244, 190, 147);
+  --charcoal: rgb(35, 32, 29);
+}
+
 /* Landing Page */
 .landing-page {
   display: flex;
@@ -7,8 +14,8 @@
 
 /* Sign In */
 .title-card {
-  margin-top: 15vh;
-  font-size: larger;
+  margin-top: 15.6vh;
+  font-size: 1.53em;
 }
 
 .login-form {
@@ -16,30 +23,36 @@
   flex-direction: column;
   align-items: center;
   gap: 2vh;
+
+  width: 50vh;
+  height: 50vh;
 }
 
 .login-header {
-  margin-block-start: 0;
-    margin-block-end: 0;
+  margin-block-start: 5%;
+  margin-block-end: 0;
 }
 
-.email, .password {
-  appearance: none;
+.sign-in-email {
+  margin-top: 5%;
 }
-input:-internal-autofill-selected {
-  background-color: white;
+
+.sign-in-email, .sign-in-password {
+  width: 60%;
+  height: 7%;
+
 }
 
 .signin-or-register {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
 
-  width: 18vh;
+  width: 100%;
 }
 
-.submit {
+.sign-in-submit, .sign-in-register {
   background: none;
   color: inherit;
   padding: 0;
@@ -47,20 +60,29 @@ input:-internal-autofill-selected {
   cursor: pointer;
   outline: inherit;
 
-  width: 8vh;
+  width: 25%;
 }
 
-.register, .submit {
+.between-sign-in-and-register{
+  width: 13%;
+}
+
+/* .sign-in-register, .sign-in-submit {
   border: 1px solid black;
-  padding: .3vh;
-}
+  padding: .5vh;
+} */
 
-.register:hover, .submit:hover {
+.sign-in-register:hover, .sign-in-submit:hover {
   cursor: pointer;
   transform: scale(1.05);
 }
 
-.register {
-  width: 8vh;
-  height: 2vh;
+a{
+  text-decoration: none;
+  color: black;
 }
+
+/* .sign-in-register {
+  width: 25%;
+  height: 2vh;
+} */

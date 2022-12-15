@@ -35,9 +35,10 @@ const Register = () => {
       <main className="register-main">
         <section className="register-fields">
           <h1 className="title">Behavior Tracker</h1>
-          <h2 className="register-title">Create Your Account</h2>
+          <h3 className="register-title">Create Your Account</h3>
           <section className="register-form">
             <form className="form-body" onSubmit={handleSubmit}>
+              <div className="top-of-register"></div>
               <div className="new-user-name">
                 <input
                   onChange={handleChange}

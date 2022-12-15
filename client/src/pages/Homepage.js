@@ -37,8 +37,12 @@ const Homepage = ({ user, setUser, handleLogOut }) => {
       <section className="homepage-body">
         <section className="navbar">
           <h1 className="website-title">Behavior Tracker</h1>
-          <h1 className="counselor-name">Welcome Back {counselorData.name}</h1>
-          <button onClick={handleLogOut}>Log Out</button>
+          <div className="between-website-title-and-name"></div>
+          <h1 className="counselor-name">Welcome Back, {counselorData.name}</h1>
+          <div className="between-name-and-logout"></div>
+          <button className="log-out-button" onClick={handleLogOut}>
+            Log Out
+          </button>
         </section>
         <main className="homepage-main">
           <div className="flex-div">
@@ -48,13 +52,17 @@ const Homepage = ({ user, setUser, handleLogOut }) => {
                   className="all-students"
                   onClick={() => renderComponent('all-students')}
                 >
-                  <h3 className="function-title">List of Students</h3>
+                  <h3 className="function-title">
+                    List of <br /> Students
+                  </h3>
                 </div>
                 <div
                   className="new-student"
                   onClick={() => renderComponent('new-student')}
                 >
-                  <h3 className="function-title">Add a Student</h3>
+                  <h3 className="function-title">
+                    Add a <br /> Student
+                  </h3>
                 </div>
                 <div
                   className="trends"

@@ -66,12 +66,19 @@ const NewStudent = ({ setComponentName, user }) => {
           <div className="component-title">New Student Form</div>
           <div className="empty-space-right"></div>
           <div className="empty-back-button">
-            <button onClick={() => changeStateBack('home')}>Back</button>
+            <button
+              className="new-student-back-button"
+              onClick={() => changeStateBack('home')}
+            >
+              Back
+            </button>
           </div>
         </div>
         <div className="form-body">
           <form onSubmit={handleSubmit}>
             <section className="new-student-form-left">
+              <div className="new-student-empty-top"></div>
+
               <div className="new-student-name">
                 <div className="name">
                   <input
@@ -95,6 +102,7 @@ const NewStudent = ({ setComponentName, user }) => {
                   />
                 </div>
               </div>
+              <div className="new-student-empty-mid"></div>
               <div className="new-student-homeroom">
                 <input
                   onChange={handleChange}
@@ -106,6 +114,7 @@ const NewStudent = ({ setComponentName, user }) => {
                   required
                 />
               </div>
+              <div className="new-student-empty-bot"></div>
               <div className="new-student-placement">
                 <select
                   onChange={handleChange}

@@ -72,7 +72,7 @@ const CreateSchedule = ({
           />
           <input
             onChange={handleChange}
-            className="name"
+            className="new-name"
             name="name"
             type="text"
             placeholder="Day of the Week"

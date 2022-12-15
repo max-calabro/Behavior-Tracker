@@ -1,12 +1,38 @@
+:root {
+  --offWhite: rgb(251, 241, 234);
+  --paleGreen: rgb(142, 165, 114);
+  --embarrassedPeach: rgb(244, 190, 147);
+  --charcoal: rgb(35, 32, 29);
+}
+
 .navbar{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .website-title, .counselor-name{
   margin-left: 2vh;
   margin-right: 2vh;
+}
+
+.between-website-title-and-name{
+  width: 6%;
+}
+
+.between-name-and-logout{
+  width: 15%;
+}
+
+.log-out-button {
+  height: 50%;
+
+  margin-top: 2vh;
+  margin-right: 3vh;
+}
+
+.log-out-button:hover {
+  cursor: pointer;
 }
 
 .homepage-main {
@@ -49,13 +75,15 @@
 
   height: 18vh;
   width: 18vh;
+
+  background-color: rgb(189, 214, 240, 0.5);
 }
 
 .function-title {
   font-weight: 400;
-  text-decoration: underline;
 }
 
 .all-students:hover, .new-student:hover, .trends:hover, .how-to-use:hover {
   box-shadow: 0 0 3px grey;
+  cursor: pointer;
 }

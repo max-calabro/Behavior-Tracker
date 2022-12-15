@@ -1,3 +1,10 @@
+:root {
+  --offWhite: rgb(251, 241, 234);
+  --paleGreen: rgb(142, 165, 114);
+  --embarrassedPeach: rgb(244, 190, 147);
+  --charcoal: rgb(35, 32, 29);
+}
+
 main {
   display: flex;
   justify-content: center;
@@ -5,13 +12,17 @@ main {
 }
 
 .title {
-  margin-top: 15vh;
-  font-size: xx-large;
+  margin-top: 20vh;
+  font-size: 2.3em;
   align-self: center;
+  margin-block-end: 0em;
 }
 
 .register-title {
   align-self: center;
+  
+  margin-block-start: 2.6em;
+  margin-block-end: 0em;
 }
 
 .register-fields {
@@ -22,17 +33,23 @@ main {
 .form-body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-content: center;
   gap: 2vh;
 
   width: 50vh;
+  height: 50vh;
+}
+
+.top-of-register {
+  height: 4.6%;
 }
 
 .new-user-name {
   display: flex;
   justify-content: center;
 
+  height: 8%;
+  
 }
 
 .first-name {
@@ -44,13 +61,14 @@ main {
 }
 
 .first-name, .last-name {
-  width: 10vh;
+  width: 24.8%;
 }
 
 .email, .password, .passwordComfirm {
   align-self: center;
 
-  width: 25vh;
+  width: 60%;;
+  height: 6%;
 }
 
 .register-button {

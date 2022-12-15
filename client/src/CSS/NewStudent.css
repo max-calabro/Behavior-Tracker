@@ -1,3 +1,10 @@
+:root {
+  --offWhite: rgb(251, 241, 234);
+  --paleGreen: rgb(142, 165, 114);
+  --embarrassedPeach: rgb(244, 190, 147);
+  --charcoal: rgb(35, 32, 29);
+}
+
 .new-student-component {
   display: flex;
   flex-direction: column;
@@ -42,8 +49,12 @@
   width: 10%;
 }
 
-.back-button {
+.new-student-back-button {
   max-height: 3vh;
+}
+
+.new-student-back-button:hover {
+  cursor: pointer;
 }
 
 form {
@@ -59,10 +70,25 @@ form {
 .new-student-form-left, .new-student-form-right {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  
   align-items: center;
 
   height: 100%;
+}
+
+.new-student-form-right{
+  justify-content: space-around;
+}
+
+.new-student-empty-top {
+  height: 22%;
+}
+.new-student-empty-mid {
+  height: 19%;
+}
+
+.new-student-empty-bot {
+  height: 19%;
 }
 
 .new-student-name,.new-student-homeroom, .new-student-placement {
@@ -82,7 +108,7 @@ form {
   justify-content: space-between;
 
   width: 61%;
-  height: 3vh;
+  height: 3.5vh;
 }
 
 .new-first-name, .new-last-name {
@@ -145,5 +171,5 @@ label {
 
 .add-student-button {
   width: 30%;
-  height: 35%;
+  height: 45%;
 }

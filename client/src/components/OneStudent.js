@@ -26,8 +26,9 @@ const OneStudent = ({ handleLogOut }) => {
 
   const [selectedSchedule, setSelectedSchedule] = useState(null)
   const [selectedScheduleId, setSelectedScheduleId] = useState(null)
-  // const [trigger, setTrigger] = useState(null)
-
+  const [number14, setNumber14] = useState([
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+  ])
   const navigateBack = () => {
     navigate(-1)
   }
@@ -43,7 +44,6 @@ const OneStudent = ({ handleLogOut }) => {
 
   const getPeriods = async () => {
     let response = await GetAllPeriods()
-    console.log(response.data)
     setPeriodList(response.data)
   }
 
@@ -74,7 +74,6 @@ const OneStudent = ({ handleLogOut }) => {
     let studentWithSchedule = await AssignScheduleToStudent(studentInfo.id, {
       scheduleId: newSchedule.data.id
     })
-    console.log(studentWithSchedule.data)
   }
 
   useEffect(() => {
@@ -82,47 +81,57 @@ const OneStudent = ({ handleLogOut }) => {
     getPeriods()
   }, [])
 
-  // useEffect(() => {
-  //   if (schedule === 'selected') {
-  //     console.log('hi')
-  //   }
-  // }, [trigger])
-
   return (
     <>
       <section className="one-student-body">
         <section className="navbar">
           <h1 className="website-title">Behavior Tracker</h1>
-          <button onClick={handleLogOut}>Log Out</button>
-          <button className="home-button" onClick={() => navigateBack()}>
-            Back to Home
+          <button className="log-out-button" onClick={handleLogOut}>
+            Log Out
           </button>
         </section>
         <main className="one-student-main">
           <div className="student-general-info">
-            <div>Name: {studentInfo.name}</div>
-            <div>Homeroom: {studentInfo.homeroom}</div>
-            {/* <div>
-              Targeted Behavior: {studentInfo.BehaviorTracker.targetedBehavior}
+            <div className="between-top-and-name"></div>
+            <div className="general-info-student-name">{studentInfo.name}</div>
+            <div className="general-info-student-homeroom">
+              Homeroom, {studentInfo.homeroom}
             </div>
-            <div>Incentive: {studentInfo.BehaviorTracker.incentive}</div> */}
-            <div>Other Days</div>
+            <div className="general-info-student-grade"> 2nd Grade</div>
+            {/* <div>Targeted Behavior: {studentInfo.homeroom}</div>
+            <div>Incentive</div> */}
             <div className="button-grouping">
+              <div className="between-top-and-create"></div>
+              <button
+                className="recent-schedule-button"
+                onClick={() => changeSchedule('selected')}
+              >
+                Most Recent Schedule
+              </button>
+              <div className="between-create-and-edit"></div>
               <button
                 className="make-schedule-button"
                 onClick={() => changeSchedule('create')}
               >
                 Make A New Schedule
               </button>
+              <div className="between-create-and-edit"></div>
               <button
                 className="edit-schedule-button"
                 onClick={() => changeSchedule('edit')}
               >
                 Edit Current Schedule
               </button>
+              <div className="between-edit-and-list"></div>
+              <button
+                className="list-schedule-button"
+                // onClick={() => changeSchedule('edit')}
+              >
+                List of Schedules
+              </button>
             </div>
           </div>
-          <div className="empty-div-left">left</div>
+          <div className="empty-div-left"></div>
           <div className="student-daily-schedule">
             {schedule === 'selected' ? (
               <Schedule
@@ -138,7 +147,6 @@ const OneStudent = ({ handleLogOut }) => {
                 setSchedule={setSchedule}
                 periodList={periodList}
                 setSelectedSchedule={setSelectedSchedule}
-                // setTrigger={setTrigger}
                 scheduleCreation={scheduleCreation}
                 addInPeriods={addInPeriods}
                 assignNewScheduleToStudent={assignNewScheduleToStudent}
@@ -150,12 +158,29 @@ const OneStudent = ({ handleLogOut }) => {
                 setSchedule={setSchedule}
               />
             ) : (
-              <button onClick={() => changeSchedule('selected')}>
-                Display Most Recent Schedule
-              </button>
+              <>
+                <div className="student-schedule-top">
+                  <div className="schedule-date">Date:</div>
+                  <div className="between-date-and-name"></div>
+                  <div></div>
+                </div>
+                <div className="student-schedule-grid">
+                  {number14.map((num, index) => (
+                    <div className="grid-tile" key={index}>
+                      <div className="period-name">Period {index + 1}</div>
+                      <div className="between-name-and-style"></div>
+                      <div className="behavior-plan-style"></div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </div>
-          <div className="empty-div-right">right</div>
+          <div className="empty-div-right">
+            <button className="home-button" onClick={() => navigateBack()}>
+              Home
+            </button>
+          </div>
         </main>
       </section>
     </>

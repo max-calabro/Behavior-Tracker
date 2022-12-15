@@ -1,3 +1,10 @@
+:root {
+  --offWhite: rgb(251, 241, 234);
+  --paleGreen: rgb(142, 165, 114);
+  --embarrassedPeach: rgb(244, 190, 147);
+  --charcoal: rgb(35, 32, 29);
+}
+
 .App {
   text-align: center;
 }

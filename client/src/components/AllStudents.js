@@ -59,7 +59,12 @@ const AllStudents = ({ setComponentName, user }) => {
                     <div className="dashed-line"></div>
                     <h3 className="student-homeroom">{student.homeroom}</h3>
                     <div className="dashed-line"></div>
-                    <h3 className="student-schedule">view</h3>
+                    <h3
+                      className="student-schedule"
+                      onClick={() => navigateToStudentPage(student.id)}
+                    >
+                      view
+                    </h3>
                   </div>
                 ) : (
                   <div className="student-container-light" key={student.id}>

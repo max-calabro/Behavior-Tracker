@@ -31,7 +31,7 @@ const SignIn = ({ setUser }) => {
         <form className="login-form" onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
-            className="email"
+            className="sign-in-email"
             name="email"
             type="email"
             placeholder="Email"
@@ -40,7 +40,7 @@ const SignIn = ({ setUser }) => {
           />
           <input
             onChange={handleChange}
-            className="password"
+            className="sign-in-password"
             name="password"
             type="password"
             value={formValues.password}
@@ -48,16 +48,19 @@ const SignIn = ({ setUser }) => {
             required
           />
           <div className="signin-or-register">
+            <div className="between-top-and-sign-in"></div>
             <button
-              className="submit"
+              className="sign-in-submit"
               type="submit"
               disabled={!formValues.email || !formValues.password}
             >
               Sign In
             </button>
-            <div className="register">
+            <div className="between-sign-in-and-register"></div>
+            <button className="sign-in-register">
               <Link to="/register">Register</Link>
-            </div>
+            </button>
+            <div className="between-register-and-bottom"></div>
           </div>
         </form>
       </section>

@@ -1,3 +1,10 @@
+:root {
+  --offWhite: rgb(251, 241, 234);
+  --paleBlue: rgb(189, 214, 240);
+  --embarrassedPeach: rgb(244, 190, 147);
+  --charcoal: rgb(35, 32, 29);
+}
+
 .all-students-component {
   display: flex;
   flex-direction: column;
@@ -46,6 +53,10 @@
   max-height: 3vh;
 }
 
+.back-button:hover {
+  cursor: pointer;
+}
+
 /* Student Table Legend */
 .student-table-legend {
   display: flex;
@@ -63,7 +74,7 @@
 }
 
 .student-table-legend {
-  background-color: rgb(176, 177, 187);
+  background-color: rgb(184, 184, 188);
 }
 
 .student-container-light, .student-container-dark {
@@ -74,11 +85,13 @@
 }
 
 .student-container-light {
-  background-color: rgb(213, 219, 255);
+  /* background-color: rgb(219, 223, 250); */
+  background-color: rgb(222, 231, 240);
 }
 
 .student-container-dark {
-  background-color: rgb(174, 185, 246);
+  /* background-color: rgb(191, 201, 252); */
+  background-color: rgb(189, 214, 240);
 }
 
 .student-name, .legend-name, .legend-homeroom, .student-homeroom, .legend-schedule, .student-schedule {
@@ -90,12 +103,16 @@
   width: 15%;
 }
 
+.legend-homeroom, .student-homeroom, .legend-schedule, .student-schedule{
+  width: 15%;
+}
+
 .student-name, .legend-name  {
   text-align: left;
   
   border-left: 2px solid black;
 
-  width: 25%;
+  width: 45%;
   height: 100%;
 }
 
@@ -115,7 +132,7 @@
 
 .student-schedule:hover {
   cursor: pointer;
-  color:rgb(255, 79, 255);
+  color:var(--offWhite);
 }
 
 .dashed-line {
