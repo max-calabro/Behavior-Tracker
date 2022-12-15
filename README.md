@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="assets/images/beerbook_logo.svg" alt="title_logo"/>
-</p>
-
 # <p align="center"> Behavior Tracker <p>
 
 ### <p align="center"> Easily keep track of your students and their behavior plans! <p>
@@ -16,39 +12,36 @@
 
 ### **_Description_**
 
-#### Assign behavior plans to students. Online tool you can show students who may learn better through visuals. Aggregate data about student behaviors and easily find what day/time/period they do well or need assistance in.
+#### This online tool is meant to replace the paper based system that many school counselors are still using. Using Bahavior Tracker you can easily keep your students info, and yourself, organized.
+
+#### The biggest advantage of using this tool is the data aggregation. Over time you can view behavior trends of your students to better assist them throughout the year.
 
 ---
 
 ### <p align="center">**_Technologies Used_**<p>
 
-#### Backend: Python, Flask, SQLAlchemy(+Alembic), Postgresql
-
-#### Frontend: Javascript, React
-
-![Logos](assets/images/BeerBook_Logos_for_README.png)
-
----
+## ![Logos](client/public/assets/images/BeerBook_Logos_for_README.png)
 
 ### **_Getting Started_**
 
 #### A Trello board was used to track development and can be viewed [here](https://trello.com/b/PdztvYgl/behavior-tracker).
 
-#### The project itself was deployed with Heroku and can be viewed [here](https://beerbook-frontend.herokuapp.com/home).
-
 ---
 
-## ![screenshot](assets/images/Screen_Shot_.png)
+## ![screenshot](client/public/assets/images/ScreenShot_B_T.png)
 
 ### **_Future Updates_**
 
-- [ ] Deploy project
-- [ ] Choosing Website colors/styles
+- [ ] Print and Download options for the Schedules
+- [ ] Trends Page
+- [ ] How-to-use Page
 
 ---
 
 ### **_Credits_**
 
-##### General Assembly: [Choose Your Path](https://generalassemb.ly/)
+##### General Assembly: [Choose Your Path](https://generalassemb.ly/),
+
+##### And my wonderful girlfriend for the idea.
 
 ---
