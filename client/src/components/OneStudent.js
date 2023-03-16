@@ -96,7 +96,7 @@ const OneStudent = ({ handleLogOut }) => {
             <div className="general-info-student-homeroom">
               Homeroom, {studentInfo.homeroom}
             </div>
-            <div className="general-info-student-grade"> 2nd Grade</div>
+            <div className="general-info-student-grade"></div>
             {/* <div>Targeted Behavior: {studentInfo.homeroom}</div>
             <div>Incentive</div> */}
             <div className="button-grouping">
