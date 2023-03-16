@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const logger = require('morgan')
-//const path = require('path')
+const path = require('path')
 
 const StudentRouter = require('./routes/StudentRouter')
 const CounselorRouter = require('./routes/CounselorRouter')
@@ -16,16 +16,16 @@ const PORT = process.env.PORT || 3001
 
 app.use(cors())
 app.use(express.json())
-// app.use(
-//   express.static(path.join(__dirname, 'Behavior-Tracker/client/src/index.js'))
-// )
+app.use(
+  express.static(path.join(__dirname, 'Behavior-Tracker/client/src/index.js'))
+)
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => res.json({ message: 'Server Works!' }))
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/client/public/index.html'))
-// })
+//app.get('/', (req, res) => res.json({ message: 'Server Works!' }))
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/public/index.html'))
+})
 app.use('/student', StudentRouter)
 app.use('/counselor', CounselorRouter)
 app.use('/period', PeriodRouter)
